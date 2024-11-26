@@ -16,7 +16,7 @@
       Console.WriteLine("Returning a book");
       break;
     default:
-      Console.Write("Unrecognized command");
+      Console.WriteLine("Unrecognized command");
       break;
   }
 }
