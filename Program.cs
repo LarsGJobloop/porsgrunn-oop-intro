@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("Please write something, then hit 'enter'");
+string? userInput = Console.ReadLine();
+if (userInput == null)
+{
+  throw new Exception("Could not read user input");
+}
+
+Console.WriteLine("User inputted");
+Console.WriteLine(userInput);
