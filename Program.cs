@@ -21,7 +21,23 @@ while (true)
       }
       break;
     case "borrow":
-      Console.WriteLine("Boorowing a book");
+      Console.WriteLine("Please give title for book:");
+      string? bookTitle = Console.ReadLine();
+      if (bookTitle == null)
+      {
+        throw new Exception("Could not read user input");
+      }
+
+      Book? borrowedBook = library.BorrowBook(bookTitle);
+      if (borrowedBook == null)
+      {
+        Console.WriteLine($"Sorry, no book with title {bookTitle} available");
+      }
+      else
+      {
+        Console.WriteLine($"Book with title {borrowedBook.Title} borrowed!");
+      }
+
       break;
     case "return":
       Console.WriteLine("Returning a book");
