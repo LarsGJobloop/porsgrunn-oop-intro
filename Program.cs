@@ -5,5 +5,15 @@ if (userInput == null)
   throw new Exception("Could not read user input");
 }
 
-Console.WriteLine("User inputted");
-Console.WriteLine(userInput);
+switch (userInput)
+{
+  case "borrow":
+    Console.WriteLine("Boorowing a book");
+    break;
+  case "return":
+    Console.WriteLine("Returning a book");
+    break;
+  default:
+    Console.Write("Unrecognized command");
+    break;
+}
