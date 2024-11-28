@@ -1,49 +1,41 @@
-﻿Library library = new Library();
+﻿TerminalUserInterface ui = new TerminalUserInterface();
+Library library = new Library();
 
 // Main Loop
 while (true)
 {
-  Console.WriteLine("Please write something, then hit 'enter'");
-  string? userInput = Console.ReadLine();
-  if (userInput == null)
-  {
-    throw new Exception("Could not read user input");
-  }
+  string userInput = ui.Request<string>("Write your option, then hit 'enter'\nOptions:\n- list\n- borrow\n- return");
 
   switch (userInput)
   {
     case "list":
       List<Book> availableBooks = library.ListAvailableBooks();
 
+      ui.Send($"Available books:");
       foreach (var book in availableBooks)
       {
-        Console.WriteLine($"Title: {book.Title}");
+        ui.Send($"\tTitle: {book.Title}");
       }
       break;
     case "borrow":
-      Console.WriteLine("Please give title for book:");
-      string? bookTitle = Console.ReadLine();
-      if (bookTitle == null)
-      {
-        throw new Exception("Could not read user input");
-      }
+      string? bookTitle = ui.Request<string>("Please give title for book:");
 
       Book? borrowedBook = library.BorrowBook(bookTitle);
       if (borrowedBook == null)
       {
-        Console.WriteLine($"Sorry, no book with title {bookTitle} available");
+        ui.Send($"Sorry, no book with title {bookTitle} available");
       }
       else
       {
-        Console.WriteLine($"Book with title {borrowedBook.Title} borrowed!");
+        ui.Send($"Book with title {borrowedBook.Title} borrowed!");
       }
 
       break;
     case "return":
-      Console.WriteLine("Returning a book");
+      ui.Send("Returning a book");
       break;
     default:
-      Console.WriteLine("Unrecognized command");
+      ui.Send("Unrecognized command");
       break;
   }
 }
